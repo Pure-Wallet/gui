@@ -34,12 +34,48 @@ MainWindow::MainWindow(QWidget *parent)
     connect(action, &QAction::triggered, this, &MainWindow::GenerateKeyPair);
     keyMenu->addAction(action);
 
+    QGroupBox *groupBox = new QGroupBox(tr("Options:"));
+    setCentralWidget(groupBox);
 
+
+    QHBoxLayout *hbox1 = new QHBoxLayout;
+    //LOAD WALLET
     QPushButton *button = new QPushButton("&Load Wallet", this);
-    button->setMinimumSize(200, 200)
+    button->setMinimumSize(100, 100);
     action = new QAction("&Load Wallet");
+    connect(action, &QAction::triggered, this, &MainWindow::LoadWallet);
     button->addAction(action);
-    setCentralWidget(button);
+    hbox1->addWidget(button);
+
+    // NEW WALLET
+    button = new QPushButton("&New Wallet", this);
+    button->setMinimumSize(100, 100);
+    action = new QAction("&New Wallet");
+    connect(action, &QAction::triggered, this, &MainWindow::GenerateWallet);
+    button->addAction(action);
+    hbox1->addWidget(button);
+
+    //GENERATE KEY
+    button = new QPushButton("&Generate KeyPair", this);
+    button->setMinimumSize(100, 100);
+    action = new QAction("&Generate KeyPair");
+    connect(action, &QAction::triggered, this, &MainWindow::GenerateKeyPair);
+    button->addAction(action);
+    hbox1->addWidget(button);
+
+
+    // RECEIEVE
+//    button = new QPushButton("&Receive", this);
+//    button->setMinimumSize(100, 100);
+//    action = new QAction("&Receieve");
+//    connect(action, &QAction::triggered, this, &MainWindow::Receive);
+//    button->addAction(action);
+//    vbox->addWidget(button);
+
+    groupBox->setLayout(hbox1);
+
+
+
 
 
 
@@ -66,7 +102,9 @@ void MainWindow::GenerateKeyPair(){
 void MainWindow::LoadWallet(){
     statusBar()->showMessage("Loading Wallet...");
 }
-
+void MainWindow::GenerateWallet(){
+    statusBar()->showMessage("Generating Wallet...");
+}
 
 MainWindow::~MainWindow()
 {

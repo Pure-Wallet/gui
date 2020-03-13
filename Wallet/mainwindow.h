@@ -6,6 +6,9 @@
 #include <QMenu>
 #include <QStatusBar>
 #include <QPushButton>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QGridLayout>
 
 class MainWindow : public QMainWindow
 {
@@ -22,5 +25,6 @@ private slots:
     void OnFileSave();
     void GenerateKeyPair();
     void LoadWallet();
+    void GenerateWallet();
 };
 #endif // MAINWINDOW_H
